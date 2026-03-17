@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Свадьба Александра и Марии</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:'Montserrat',sans-serif;background:#f9f6f2;color:#333;text-align:center;overflow-x:hidden}
+
+.hero{height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;background:linear-gradient(rgba(0,0,0,0.35),rgba(0,0,0,0.35)), url('https://images.unsplash.com/photo-1522673607200-164d1b6ce486?q=80&w=1600&auto=format&fit=crop');background-size:cover;background-position:center;color:white;padding:20px}
+
+.hero h1{font-family:'Playfair Display',serif;font-size:64px;margin:0}
+.hero p{font-size:22px;margin-top:15px}
+.date{font-size:28px;margin-top:20px;letter-spacing:2px}
+
+button.invite-btn{margin-top:35px;padding:14px 28px;border:none;border-radius:30px;font-size:18px;background:white;color:#333;cursor:pointer}
+
+section{padding:70px 20px}
+.card{max-width:750px;margin:auto;background:white;padding:40px;border-radius:16px;box-shadow:0 15px 35px rgba(0,0,0,0.08)}
+
+h2{font-family:'Playfair Display',serif;font-size:36px;margin-top:0}
+.details{font-size:20px;line-height:1.8}
+
+.timer-box{display:flex;justify-content:center;gap:20px;margin-top:30px;flex-wrap:wrap}
+.time{background:#f2ece6;padding:20px 25px;border-radius:10px;min-width:90px}
+.time span{display:block;font-size:34px;font-weight:600}
+
+.program{font-size:20px;line-height:2;margin-top:10px}
+
+.map{margin-top:25px;border-radius:12px;overflow:hidden}
+
+.route-btn{margin-top:20px;padding:12px 22px;border:none;background:#e7dfd6;border-radius:20px;font-size:16px;cursor:pointer}
+
+.rsvp{font-size:20px;line-height:1.7}
+
+.counter{font-size:22px;margin-top:15px}
+
+footer{margin-top:60px;padding:30px;background:#efe7de;font-size:18px}
+
+.petals{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;overflow:hidden;z-index:999}
+.petal{position:absolute;top:-50px;font-size:22px;animation:fall linear infinite}
+
+@keyframes fall{0%{transform:translateY(-50px) rotate(0deg)}100%{transform:translateY(110vh) rotate(360deg)}}
+
+#dog{position:fixed;bottom:-200px;right:20px;width:160px;transition:1s}
+
+</style>
+</head>
+
+<body>
+
+<div class="petals" id="petals"></div>
+
+<section class="hero">
+<h1>Александр & Мария</h1>
+<p>Приглашаем вас разделить с нами самый счастливый день нашей жизни</p>
+<div class="date">26 июня 2026</div>
+<button class="invite-btn" onclick="scrollToDetails()">Открыть приглашение</button>
+</section>
+
+<section id="details">
+<div class="card">
+<h2>До нашей свадьбы осталось</h2>
+<div class="timer-box">
+<div class="time"><span id="days">0</span>дней</div>
+<div class="time"><span id="hours">0</span>часов</div>
+<div class="time"><span id="minutes">0</span>минут</div>
+<div class="time"><span id="seconds">0</span>секунд</div>
+</div>
+</div>
+</section>
+
+<section>
+<div class="card">
+<h2>Программа дня</h2>
+<div class="program">
+13:30 — Церемония в ЗАГС №34 (Сосновый Бор)<br>
+16:00 — Банкет в ресторане «Легенда»
+</div>
+<div class="counter">🥂 Поднято бокалов: <span id="glassCount">0</span></div>
+<button class="route-btn" onclick="raiseGlass()">Поднять бокал</button>
+</div>
+</section>
+
+<section>
+<div class="card">
+<h2>Место церемонии</h2>
+<div class="details">ЗАГС №34<br>Сосновый Бор</div>
+<div class="map">
+<iframe src="https://maps.google.com/maps?q=%D0%97%D0%90%D0%93%D0%A1%2034%20%D0%A1%D0%BE%D1%81%D0%BD%D0%BE%D0%B2%D1%8B%D0%B9%20%D0%91%D0%BE%D1%80&t=&z=13&ie=UTF8&iwloc=&output=embed" width="100%" height="300"></iframe>
+</div>
+</div>
+</section>
+
+<section>
+<div class="card">
+<h2>Точка сбора</h2>
+<div class="details">Санкт-Петербург<br>проспект Обуховской Обороны 209</div>
+<div class="map">
+<iframe src="https://yandex.ru/map-widget/v1/?text=Санкт-Петербург%2C%20проспект%20Обуховской%20Обороны%20209&z=15" width="100%" height="300" frameborder="0"></iframe>
+</div>
+<button class="route-btn" onclick="openRoute()">Построить маршрут</button>
+</div>
+</section>
+
+<section>
+<div class="card">
+<h2>Подтвердите присутствие</h2>
+<div class="rsvp">Отправьте сообщение:<br><br>ФИО<br>номер телефона<br>подтверждение присутствия<br><br>в Telegram или WhatsApp</div>
+</div>
+</section>
+
+<footer>
+С любовью, Александр и Мария ❤
+</footer>
+
+<img id="dog" src="https://media.giphy.com/media/3o7aD2saalBwwftBIY/giphy.gif">
+
+<iframe width="0" height="0" src="https://www.youtube.com/embed/EMnQwBTJnMM?autoplay=1&loop=1&playlist=EMnQwBTJnMM"></iframe>
+
+<script>
+
+function scrollToDetails(){
+ document.getElementById('details').scrollIntoView({behavior:'smooth'})
+}
+
+const weddingDate=new Date("June 26, 2026 13:30:00").getTime();
+setInterval(function(){
+const now=new Date().getTime();
+const distance=weddingDate-now;
+const days=Math.floor(distance/(1000*60*60*24));
+const hours=Math.floor((distance%(1000*60*60*24))/(1000*60*60));
+const minutes=Math.floor((distance%(1000*60*60))/(1000*60));
+const seconds=Math.floor((distance%(1000*60))/1000);
+
+document.getElementById("days").innerHTML=days;
+document.getElementById("hours").innerHTML=hours;
+document.getElementById("minutes").innerHTML=minutes;
+document.getElementById("seconds").innerHTML=seconds;
+},1000);
+
+// petals
+const petalsContainer=document.getElementById('petals');
+for(let i=0;i<25;i++){
+let petal=document.createElement('div');
+petal.classList.add('petal');
+petal.innerHTML='🌹';
+petal.style.left=Math.random()*100+'vw';
+petal.style.animationDuration=(5+Math.random()*5)+'s';
+petalsContainer.appendChild(petal);
+}
+
+// glasses counter
+let glasses=0
+function raiseGlass(){
+ glasses++
+ document.getElementById('glassCount').innerText=glasses
+}
+
+// route
+function openRoute(){
+ window.open("https://yandex.ru/maps/?text=Санкт-Петербург%20проспект%20Обуховской%20Обороны%20209")
+}
+
+// random dog
+setInterval(()=>{
+ const dog=document.getElementById('dog')
+ dog.style.bottom='20px'
+ setTimeout(()=>{dog.style.bottom='-200px'},5000)
+},25000)
+
+</script>
+
+</body>
+</html>
